@@ -2,8 +2,9 @@ package com.localhost.app.model.entities;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import com.localhost.app.model.entities.exceptions.DataInvalidaException;
@@ -18,14 +19,15 @@ public final class Pessoa  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String  nome;
-	private Date    nascimento;
 	private Integer idade;
-	private final static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+	private LocalDate nascimento;
+	
+	private final static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public Pessoa () {
 	}
 
-	public Pessoa(String nome, Date nascimento) {
+	public Pessoa(String nome, LocalDate nascimento) {
 		this.nome = nome;
 		this.nascimento = nascimento;
 	}
@@ -46,19 +48,12 @@ public final class Pessoa  implements Serializable{
 	 * @throws DataInvalidaException caso a data seja no futuro ou invalida
 	 */
 	public void calculaIdadeDe( String data ) throws DataInvalidaException {
-		try {
-			nascimento = dateFormatter.parse(data);
-			Date today = new Date(); 
+		nascimento = LocalDate.parse(data, dateFormatter);
+		LocalDate today = LocalDate.now(); 
 
-			if ( nascimento.after( today ) ) throw new DataInvalidaException("Você é do futuro por acaso ?");
-			
-			long dateDiff = today.getTime() - nascimento.getTime();
-			
-			this.idade = (int) Math.round( TimeUnit.DAYS.convert(dateDiff, TimeUnit.MILLISECONDS) / 365 );
-
-		}catch ( ParseException parse_err ) {
-			throw new DataInvalidaException("Data inválida fornecida");
-		}
+		if ( nascimento.isAfter( today ) ) throw new DataInvalidaException("Você é do futuro por acaso ?");
+		
+		this.idade = Period.between(nascimento, today).getYears();
 	}
 
 	/**
@@ -77,11 +72,12 @@ public final class Pessoa  implements Serializable{
 		return nome;
 	}
 
-	public Date getNascimento() {
+	public LocalDate getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(LocalDate nascimento) throws DataInvalidaException {
+		if ( nascimento.isAfter(LocalDate.now()) ) throw new DataInvalidaException("Você é do futuro por acaso ?");
 		this.nascimento = nascimento;
 	}
 
