@@ -6,8 +6,9 @@ package com.localhost.app.model.entities;
 import java.io.Serializable;
 
 /**
+ * Representa a entidade Item no sistema
  * @author lucas
- *
+ * @version 0.1
  */
 public final class Item implements Serializable {
 

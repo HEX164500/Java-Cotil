@@ -5,7 +5,6 @@ import java.io.Serializable;
 /**
  * Representa a entidade Funcionario do sistema
  * @author lucas
- * @see Serializable
  * @version 0.1
  */
 public final class Funcionario implements Serializable {

@@ -2,6 +2,8 @@ package com.localhost.app;
 
 import com.localhost.app.model.entities.Funcionario;
 import com.localhost.app.model.entities.Item;
+import com.localhost.app.model.entities.Pessoa;
+import com.localhost.app.model.entities.exceptions.DataInvalidaException;
 
 /**
  * @author lucas
@@ -11,6 +13,7 @@ public class Main{
 	public static void main(String[] args) {
 		//testaFuncionario();
 		//testaItem();
+		//testaPessoa();
 	}
 
 	/**
@@ -47,4 +50,22 @@ public class Main{
 		System.out.println(i1 + "\nTotal da compra: " + i1.getTotal());
 	}
 
+	public static void testaPessoa() {
+		try {
+			Pessoa p1 = new Pessoa("Albert Einstein", "14/03/1879");
+			
+			// lançam um erro do tipo DataInvalidaException
+			//Pessoa p2 = new Pessoa("Isaac Newton", "04/01/164346");
+			//Pessoa p2 = new Pessoa("Isaac Newton", "aa04/01/164346");
+			
+			Pessoa p2 = new Pessoa("Isaac Newton", "04/01/1643");
+			
+			System.out.println(p1);
+			System.out.println(p2);
+			
+		}catch ( DataInvalidaException die_err ) {
+			System.out.println(die_err.getMessage() + "\n\n");
+			die_err.printStackTrace();
+		}
+	}
 }
