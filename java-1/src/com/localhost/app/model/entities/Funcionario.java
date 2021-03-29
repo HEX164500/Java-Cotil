@@ -2,6 +2,12 @@ package com.localhost.app.model.entities;
 
 import java.io.Serializable;
 
+/**
+ * Representa a entidade Funcionario do sistema
+ * @author lucas
+ * @see Serializable
+ * @version 0.1
+ */
 public final class Funcionario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -20,10 +26,18 @@ public final class Funcionario implements Serializable {
 		setSalarioMensal(salarioMensal);
 	}
 	
+	/**
+	 * Calcula o salario anual do funcionario
+	 * @return O salario multiplicado por 12
+	 */
 	public Double getSalarioAnual () {
 		return this.salarioMensal * 12;
 	}
 	
+	/**
+	 * Aumenta o salario do funcionario baseado em uma porcentagem fornecida
+	 * @param porcentagem o valor a ser acrescido
+	 */
 	public void aumentaSalarioEm( double porcentagem ) {
 		setSalarioMensal( salarioMensal += salarioMensal * ( porcentagem / 100 ) );
 	}
@@ -52,6 +66,12 @@ public final class Funcionario implements Serializable {
 		this.salarioMensal = salarioMensal > 0 ? salarioMensal : 0 ;
 	}
 	
+	
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "Nome: " + nome + " " + sobrenome + ", salario: " + salarioMensal;
