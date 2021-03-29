@@ -3,6 +3,7 @@ package com.localhost.app;
 import com.localhost.app.model.entities.Funcionario;
 import com.localhost.app.model.entities.Item;
 import com.localhost.app.model.entities.Pessoa;
+import com.localhost.app.model.entities.ProdutoDeEstoque;
 import com.localhost.app.model.entities.exceptions.DataInvalidaException;
 
 /**
@@ -13,7 +14,8 @@ public class Main{
 	public static void main(String[] args) {
 		//testaFuncionario();
 		//testaItem();
-		testaPessoa();
+		//testaPessoa();
+		//testaProdutoEstoque();
 	}
 
 	/**
@@ -67,5 +69,24 @@ public class Main{
 			System.out.println(die_err.getMessage() + "\n\n");
 			die_err.printStackTrace();
 		}
+	}
+	
+	public static void testaProdutoEstoque() {
+		ProdutoDeEstoque produto1 = new ProdutoDeEstoque("Impressora", 13, 6);
+		ProdutoDeEstoque produto2 = new ProdutoDeEstoque("Monitor", 11, 13);
+		ProdutoDeEstoque produto3 = new ProdutoDeEstoque("Mouse", 6, 2);
+		
+		produto1.darBaixaEm(5);
+		produto2.reporEstoqueEm(7);
+		produto3.darBaixaEm(4);
+		
+		System.out.println(produto1 + "\nPrecisa repor ? " + ( produto1.precisaRepor() ? "Sim" : "Não" ));
+		System.out.println(produto2 + "\nPrecisa repor ? " + ( produto2.precisaRepor() ? "Sim" : "Não" ));
+		System.out.println(produto3 + "\nPrecisa repor ? " + ( produto3.precisaRepor() ? "Sim" : "Não" ));
+		
+		System.out.println("-----------------------------------------------------------------------------------");
+		System.out.println(produto1.mostra());
+		System.out.println(produto2.mostra());
+		System.out.println(produto3); // toString() like mostra()
 	}
 }
