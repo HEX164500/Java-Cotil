@@ -1,11 +1,9 @@
 package com.localhost.app.model.entities;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
 
 import com.localhost.app.model.entities.exceptions.DataInvalidaException;
 
@@ -25,6 +23,8 @@ public final class Pessoa  implements Serializable{
 	private final static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public Pessoa () {
+		nome = "";
+		nascimento = LocalDate.MIN;
 	}
 
 	public Pessoa(String nome, LocalDate nascimento) {
