@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.localhost.app.model.entities.Employee;
-import com.localhost.app.model.entities.Manager;
-import com.localhost.app.model.entities.Secretary;
-import com.localhost.app.model.entities.Telephonist;
+import com.localhost.app.model.entities.ex1.Employee;
+import com.localhost.app.model.entities.ex1.Manager;
+import com.localhost.app.model.entities.ex1.Secretary;
+import com.localhost.app.model.entities.ex1.Telephonist;
 
 /**
  * Used to test employee activity, can be used as thread

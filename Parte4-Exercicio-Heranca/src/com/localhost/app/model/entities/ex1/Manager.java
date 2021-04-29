@@ -1,4 +1,4 @@
-package com.localhost.app.model.entities;
+package com.localhost.app.model.entities.ex1;
 
 import java.io.Serializable;
 

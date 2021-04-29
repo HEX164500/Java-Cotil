@@ -1,4 +1,4 @@
-package com.localhost.app.model.entities;
+package com.localhost.app.model.entities.ex1;
 
 import java.io.Serializable;
 
@@ -12,17 +12,6 @@ public abstract class Employee implements Serializable {
 
 	private String name;
 	private Double salary;
-	
-	
-	/**
-	 * Not Allowed and not requested
-	 * @deprecated
-	 */
-	@SuppressWarnings("unused")
-	private Employee() {
-		name = "";
-		salary = 0D;
-	}
 	
 	/**
 	 * Create a new Employee
@@ -57,7 +46,7 @@ public abstract class Employee implements Serializable {
 
 	public void setSalary(Double salary) {
 		if ( salary < 0 )
-			throw new IllegalArgumentException("Salary must be greather then 0");
+			throw new IllegalArgumentException("Salary must be greater than 0");
 		this.salary = salary;
 	}
 
@@ -75,7 +64,7 @@ public abstract class Employee implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if ( obj instanceof Employee  == false )
 			return false;
 		Employee other = (Employee) obj;
 		if (name == null) {
