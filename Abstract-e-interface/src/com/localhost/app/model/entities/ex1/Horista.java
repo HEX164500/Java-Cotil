@@ -46,7 +46,4 @@ public class Horista extends Empregado {
 	public String toString() {
 		return super.toString() + ", precoHora = " + precoHora + ", horasTrabalhadas = " + horasTrabalhadas;
 	}
-	
-	
-
 }
